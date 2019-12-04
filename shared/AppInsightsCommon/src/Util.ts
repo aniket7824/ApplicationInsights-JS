@@ -13,6 +13,7 @@ const prototype = "prototype";
 
 var _window = getWindow();
 var _navigator = getNavigator();
+var _isString = CoreUtils.isString;
 
 export class Util {
     private static document: any = getDocument()||{};
@@ -399,7 +400,7 @@ export class Util {
      * helper method to trim strings (IE8 does not implement String.prototype.trim)
      */
     public static trim(str: any): string {
-        if (!CoreUtils.isString(str)) { return str; }
+        if (!_isString(str)) { return str; }
         return str.replace(/^\s+|\s+$/g, "");
     }
 
@@ -512,8 +513,8 @@ export class Util {
      * Checks if error has no meaningful data inside. Ususally such errors are received by window.onerror when error
      * happens in a script from other domain (cross origin, CORS).
      */
-    public static isCrossOriginError(message: string, url: string, lineNumber: number, columnNumber: number, error: Error): boolean {
-        return (message === "Script error." || message === "Script error") && !error;
+    public static isCrossOriginError(message: string|Event, url: string, lineNumber: number, columnNumber: number, error: Error): boolean {
+        return !error && _isString(message) && (message === "Script error." || message === "Script error");
     }
 
     /**
@@ -619,7 +620,7 @@ export class UrlHelper {
     // Fallback method to grab host from url if document.createElement method is not available
     public static parseHost(url: string) {
         const match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
-        if (match != null && match.length > 2 && CoreUtils.isString(match[2]) && match[2].length > 0) {
+        if (match != null && match.length > 2 && _isString(match[2]) && match[2].length > 0) {
             return match[2];
         } else {
             return null;
