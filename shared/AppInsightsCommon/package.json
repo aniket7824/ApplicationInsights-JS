@@ -32,7 +32,10 @@
         "rollup": "^0.66.0"
     },
     "dependencies": {
-        "@microsoft/applicationinsights-core-js": "2.4.0-beta",
+        "@microsoft/applicationinsights-core-js": "2.4.0-beta"
+    },
+    "peerDependencies": {
+        "@microsoft/applicationinsights-rollup-es3" : "1.0.0",
         "tslib": "^1.9.3"
     },
     "license": "MIT"

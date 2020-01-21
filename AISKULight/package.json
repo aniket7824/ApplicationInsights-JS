@@ -25,11 +25,12 @@
         "tslint-config-prettier": "^1.18.0"
     },
     "dependencies": {
+        "tslib": "^1.9.3",
         "@microsoft/applicationinsights-common": "2.4.0-beta",
         "@microsoft/applicationinsights-channel-js": "2.4.0-beta",
         "@microsoft/applicationinsights-core-js": "2.4.0-beta"
     },
     "peerDependencies": {
-        "tslib": "^1.9.3"
+        "@microsoft/applicationinsights-rollup-es3" : "1.0.0"
     }
 }
